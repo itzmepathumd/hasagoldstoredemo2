@@ -13,7 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { StoreProvider } from '@/components/store-context';
-import { StoreHeader, StoreFooter } from '@/components/store-ui';
+import { StoreHeader, StoreFooter, BottomNavigation } from '@/components/store-ui';
 import { Button } from '@/components/ui/button';
 
 function NotFoundComponent() {
@@ -127,6 +127,7 @@ function RootComponent() {
         <StoreHeader />
         <main id="main-content"><Outlet /></main>
         <StoreFooter />
+        <BottomNavigation />
       </StoreProvider>
     </QueryClientProvider>
   );
