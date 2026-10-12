@@ -3,7 +3,7 @@ import { Component, createContext, useContext, type ReactNode } from 'react';
 const StoreContext = createContext<{ favorites: string[]; toggleFavorite: (id: string) => void }>({ favorites: [], toggleFavorite: () => {} });
 
 export class StoreProvider extends Component<{ children: ReactNode }, { favorites: string[] }> {
-  state = { favorites: [] as string[] };
+  override state = { favorites: [] as string[] };
 
   toggleFavorite = (id: string) => {
     this.setState(({ favorites }) => ({
@@ -13,7 +13,7 @@ export class StoreProvider extends Component<{ children: ReactNode }, { favorite
     }));
   };
 
-  render() {
+  override render() {
     return (
       <StoreContext.Provider
         value={{ favorites: this.state.favorites, toggleFavorite: this.toggleFavorite }}
