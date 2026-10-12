@@ -3,7 +3,7 @@ import { Search, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { GameGrid, PageIntro, EmptyState } from '@/components/store-ui';
 import { games, pageHead } from '@/lib/store-data';
-export const Route = createFileRoute('/search')({ validateSearch: (search: Record<string, unknown>) => ({ q: typeof search.q === 'string' ? search.q : '' }), head: () => pageHead('Search games', 'Find a game or currency in the HASA GOLD STORE sample top-up collection.'), component: SearchPage });
+export const Route = createFileRoute('/search')({ validateSearch: (search: Record<string, unknown>) => ({ q: typeof search['q'] === 'string' ? search['q'] : '' }), head: () => pageHead('Search games', 'Find a game or currency in the HASA GOLD STORE sample top-up collection.'), component: SearchPage });
 function SearchPage() {
   const { q } = Route.useSearch();
   const navigate = Route.useNavigate();
