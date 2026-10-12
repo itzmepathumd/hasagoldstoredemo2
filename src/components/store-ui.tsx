@@ -1,6 +1,6 @@
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate, useLocation } from '@tanstack/react-router';
 import { useState, type FormEvent } from 'react';
-import { ArrowRight, ArrowUpRight, Check, ChevronDown, Coins, Diamond, Gamepad2, Heart, HelpCircle, Menu, Search, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, ChevronDown, Coins, Diamond, Gamepad2, Heart, HelpCircle, Home, Menu, Search, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -27,6 +27,20 @@ export function StoreHeader() {
     </div>{menu && <nav className="mobile-nav container" aria-label="Mobile navigation"><Link to="/" onClick={() => setMenu(false)}>Home</Link><Link to="/games" onClick={() => setMenu(false)}>Games</Link><Link to="/how-it-works" onClick={() => setMenu(false)}>How it works</Link><Link to="/support" onClick={() => setMenu(false)}>Support</Link></nav>}</header>
     <Dialog open={quick} onOpenChange={setQuick}><DialogContent><DialogTitle>Find your next top-up</DialogTitle><DialogDescription>Search games or in-game currency.</DialogDescription><form className="search-field" onSubmit={search}><Search size={20}/><input aria-label="Quick search games" placeholder="Search games, diamonds, UC…" value={query} onChange={event => setQuery(event.target.value)} autoFocus /><Button type="submit" size="icon" aria-label="View search results"><ArrowRight /></Button></form><div className="quick-results">{results.map(game => <Link key={game.id} to="/games/$game" params={{ game: game.id }} onClick={() => { setQuick(false); setQuery(''); }}><img src={game.image} alt="" width={48} height={48}/><span><strong>{game.name}</strong><small>{game.currency}</small></span><ArrowUpRight size={18}/></Link>)}{results.length === 0 && <p className="text-muted-foreground">No games found. Try another name or currency.</p>}</div></DialogContent></Dialog>
   </>;
+}
+
+export function BottomNavigation() {
+  const { pathname } = useLocation();
+  const { favorites } = useStore();
+  const active = pathname.startsWith('/games') ? 'games' : pathname.startsWith('/search') ? 'search' : pathname.startsWith('/favorites') ? 'favorites' : pathname.startsWith('/support') || pathname.startsWith('/how-it-works') ? 'support' : pathname === '/' ? 'home' : 'none';
+  return <nav className="bottom-nav" aria-label="Bottom navigation" data-active={active}>
+    <span className="bottom-nav-indicator" aria-hidden="true" />
+    <Button asChild variant="ghost" className="bottom-nav-item"><Link to="/" aria-current={active === 'home' ? 'page' : undefined} viewTransition><Home /><span>Home</span></Link></Button>
+    <Button asChild variant="ghost" className="bottom-nav-item"><Link to="/games" aria-current={active === 'games' ? 'page' : undefined} viewTransition><Gamepad2 /><span>Games</span></Link></Button>
+    <Button asChild variant="ghost" className="bottom-nav-item"><Link to="/search" search={{ q: '' }} aria-current={active === 'search' ? 'page' : undefined} viewTransition><Search /><span>Search</span></Link></Button>
+    <Button asChild variant="ghost" className="bottom-nav-item"><Link to="/favorites" aria-current={active === 'favorites' ? 'page' : undefined} viewTransition><span className="bottom-nav-icon"><Heart />{favorites.length > 0 && <span className="bottom-nav-count">{favorites.length}</span>}</span><span>Favorites</span></Link></Button>
+    <Button asChild variant="ghost" className="bottom-nav-item"><Link to="/support" aria-current={active === 'support' ? 'page' : undefined} viewTransition><HelpCircle /><span>Support</span></Link></Button>
+  </nav>;
 }
 
 export function StoreFooter() {
