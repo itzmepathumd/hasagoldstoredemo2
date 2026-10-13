@@ -15,6 +15,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { StoreProvider } from '@/components/store-context';
 import { StoreHeader, StoreFooter, BottomNavigation } from '@/components/store-ui';
 import { Button } from '@/components/ui/button';
+import { DemoAccountProvider } from '@/components/demo-account';
+import { Toaster } from '@/components/ui/sonner';
 
 function NotFoundComponent() {
   return (
@@ -122,13 +124,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StoreProvider>
+      <DemoAccountProvider><StoreProvider>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <StoreHeader />
         <main id="main-content"><Outlet /></main>
         <StoreFooter />
         <BottomNavigation />
-      </StoreProvider>
+        <Toaster />
+      </StoreProvider></DemoAccountProvider>
     </QueryClientProvider>
   );
 }
