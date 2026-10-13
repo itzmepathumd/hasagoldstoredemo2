@@ -9,7 +9,7 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep this storefront frontend-only with session-scoped React state; no persistence or checkout services because it is a browsing demo.
+- Keep storefront services frontend-only; centralize local demo profiles, session handling, and theme state in a replaceable provider, persisting only non-secret validated data because no real authentication or checkout services exist.
 - Centralize game catalog data in a browser-safe module and share storefront chrome through the root layout to keep navigation and sample labeling consistent.
 - Use one dynamic game detail route for all catalog games, with distinct metadata per game, to keep top-up selection behavior consistent.
 - Mount the shared bottom navigation in the root layout and derive its active indicator from the current path so it stays consistent across all storefront pages.
