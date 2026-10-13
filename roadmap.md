@@ -4,3 +4,9 @@
 - [x] Add support, FAQ, and how-it-works pages with truthful sample content.
 - [x] Verify navigation, controls, keyboard access, and screen-size layouts.
 - [x] Elevate the navigation, motion, interaction feedback, and visual depth to a premium modern finish.
+- [ ] Verify the floating glass bottom navigation.
+- [ ] Add centralized frontend demo accounts, account forms, and protected dashboard navigation.
+- [ ] Add dashboard overview, orders, saved Player IDs, favorites, profile, settings, and support shortcut.
+- [ ] Add remembered light/dark/system themes across the website.
+- [ ] Polish shared controls, loading feedback, toasts, and empty states.
+- [ ] Test account flows, protected pages, themes, and every dashboard page.
