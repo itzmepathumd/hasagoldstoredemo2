@@ -13,3 +13,4 @@
 - Centralize game catalog data in a browser-safe module and share storefront chrome through the root layout to keep navigation and sample labeling consistent.
 - Use one dynamic game detail route for all catalog games, with distinct metadata per game, to keep top-up selection behavior consistent.
 - Mount the shared bottom navigation in the root layout and derive its active indicator from the current path so it stays consistent across all storefront pages.
+- Keep the public admin demo under its own shared layout with session-only draft state; exclude storefront chrome there and distinguish drafts from device-local profile edits because it is not a secure admin service.
