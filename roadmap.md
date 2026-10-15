@@ -10,3 +10,4 @@
 - [ ] Add remembered light/dark/system themes across the website.
 - [ ] Polish shared controls, loading feedback, toasts, and empty states.
 - [ ] Test account flows, protected pages, themes, and every dashboard page.
+- [ ] Build a high-quality frontend demo admin panel with useful management tools; confirm priority areas before implementation.
